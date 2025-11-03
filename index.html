@@ -279,6 +279,42 @@
             100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
         }
 
+        /* Анимированные падающие SVG */
+        .falling-svgs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        .falling-svg {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            animation: smoothFall 4s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes smoothFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
         /* Плашка для победы */
         #victoryMessage {
             display: none;
@@ -289,6 +325,8 @@
             max-width: 400px;
             width: 90%;
             text-align: center;
+            position: relative;
+            z-index: 100;
         }
 
         .victory-message {
@@ -298,17 +336,6 @@
             text-align: center;
             margin-top: 10px;
             text-shadow: none;
-        }
-
-        .celebration {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            animation: bounce 0.8s infinite alternate;
-        }
-
-        @keyframes bounce {
-            from { transform: translateY(0) scale(1); }
-            to { transform: translateY(-10px) scale(1.05); }
         }
     </style>
 </head>
@@ -371,7 +398,7 @@
         <div class="puzzle-container" id="puzzle2" style="display: none;">
             <div class="puzzle-title">Загадка 2: Коробок</div>
             <div class="puzzle-content">
-                Как поместить куртку, шарф и кеды в спичечный коробок?<br>Ответ: нужно ______ коробок.
+                Как поместить всё в спичечный коробок?<br>Ответ: нужно ______ коробок.
             </div>
             <button class="option-button" onclick="checkAnswer(2, 'Увеличить')">Увеличить</button>
             <button class="option-button" onclick="checkAnswer(2, 'Переименовать')">Переименовать</button>
@@ -401,7 +428,20 @@
 
         <!-- Победа -->
         <div id="victoryMessage" style="display: none;">
-            <div class="celebration">🎉</div>
+            <div class="falling-svgs">
+                <img src="gift1.svg" class="falling-svg" style="left: 10%; animation-delay: 0s;">
+                <img src="gift2.svg" class="falling-svg" style="left: 25%; animation-delay: 0.8s;">
+                <img src="gift3.svg" class="falling-svg" style="left: 40%; animation-delay: 1.6s;">
+                <img src="gift4.svg" class="falling-svg" style="left: 55%; animation-delay: 2.4s;">
+                <img src="gift5.svg" class="falling-svg" style="left: 70%; animation-delay: 3.2s;">
+                <img src="gift6.svg" class="falling-svg" style="left: 85%; animation-delay: 4s;">
+                <img src="gift1.svg" class="falling-svg" style="left: 15%; animation-delay: 0.4s;">
+                <img src="gift2.svg" class="falling-svg" style="left: 30%; animation-delay: 1.2s;">
+                <img src="gift3.svg" class="falling-svg" style="left: 45%; animation-delay: 2s;">
+                <img src="gift4.svg" class="falling-svg" style="left: 60%; animation-delay: 2.8s;">
+                <img src="gift5.svg" class="falling-svg" style="left: 75%; animation-delay: 3.6s;">
+                <img src="gift6.svg" class="falling-svg" style="left: 90%; animation-delay: 4.4s;">
+            </div>
             <div class="victory-message">Ты открыл сундук! Твои сокровища ждут тебя 🎁</div>
         </div>
     </div>

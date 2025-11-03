@@ -279,8 +279,8 @@
             100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
         }
 
-        /* Анимированные падающие SVG */
-        .falling-svgs {
+        /* Анимированные падающие PNG */
+        .falling-images {
             position: fixed;
             top: 0;
             left: 0;
@@ -290,10 +290,10 @@
             z-index: 99;
         }
 
-        .falling-svg {
+        .falling-image {
             position: absolute;
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             animation: smoothFall 4s linear infinite;
             opacity: 0;
         }
@@ -428,19 +428,19 @@
 
         <!-- Победа -->
         <div id="victoryMessage" style="display: none;">
-            <div class="falling-svgs">
-                <img src="gift1.svg" class="falling-svg" style="left: 10%; animation-delay: 0s;">
-                <img src="gift2.svg" class="falling-svg" style="left: 25%; animation-delay: 0.8s;">
-                <img src="gift3.svg" class="falling-svg" style="left: 40%; animation-delay: 1.6s;">
-                <img src="gift4.svg" class="falling-svg" style="left: 55%; animation-delay: 2.4s;">
-                <img src="gift5.svg" class="falling-svg" style="left: 70%; animation-delay: 3.2s;">
-                <img src="gift6.svg" class="falling-svg" style="left: 85%; animation-delay: 4s;">
-                <img src="gift1.svg" class="falling-svg" style="left: 15%; animation-delay: 0.4s;">
-                <img src="gift2.svg" class="falling-svg" style="left: 30%; animation-delay: 1.2s;">
-                <img src="gift3.svg" class="falling-svg" style="left: 45%; animation-delay: 2s;">
-                <img src="gift4.svg" class="falling-svg" style="left: 60%; animation-delay: 2.8s;">
-                <img src="gift5.svg" class="falling-svg" style="left: 75%; animation-delay: 3.6s;">
-                <img src="gift6.svg" class="falling-svg" style="left: 90%; animation-delay: 4.4s;">
+            <div class="falling-images">
+                <img src="gift1.png" class="falling-image" style="left: 10%; animation-delay: 0s;">
+                <img src="gift2.png" class="falling-image" style="left: 25%; animation-delay: 0.8s;">
+                <img src="gift3.png" class="falling-image" style="left: 40%; animation-delay: 1.6s;">
+                <img src="gift4.png" class="falling-image" style="left: 55%; animation-delay: 2.4s;">
+                <img src="gift5.png" class="falling-image" style="left: 70%; animation-delay: 3.2s;">
+                <img src="gift6.png" class="falling-image" style="left: 85%; animation-delay: 4s;">
+                <img src="gift1.png" class="falling-image" style="left: 15%; animation-delay: 0.4s;">
+                <img src="gift2.png" class="falling-image" style="left: 30%; animation-delay: 1.2s;">
+                <img src="gift3.png" class="falling-image" style="left: 45%; animation-delay: 2s;">
+                <img src="gift4.png" class="falling-image" style="left: 60%; animation-delay: 2.8s;">
+                <img src="gift5.png" class="falling-image" style="left: 75%; animation-delay: 3.6s;">
+                <img src="gift6.png" class="falling-image" style="left: 90%; animation-delay: 4.4s;">
             </div>
             <div class="victory-message">Ты открыл сундук! Твои сокровища ждут тебя 🎁</div>
         </div>

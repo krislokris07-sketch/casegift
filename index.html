@@ -37,7 +37,7 @@
         /* СУНДУК */
         .chest-container {
             position: absolute;
-            top: 20px;
+            top: 30px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -47,28 +47,28 @@
         }
 
         .chest {
-            width: 150px;
-            height: 120px;
+            width: 250px;
+            height: 180px;
             background: url('case_close.png') center/contain no-repeat;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             transition: all 0.8s ease;
         }
 
         .chest.open {
-            transform: scale(1.1);
+            transform: scale(1.15);
             background-image: url('case_open.png');
             filter: drop-shadow(0 0 30px gold);
         }
 
         .lock {
             display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 12px;
+            margin-bottom: 15px;
         }
 
         .lock-digit {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: #EAC774;
             color: #8B4513;
             border: 2px solid #8B4513;
@@ -76,7 +76,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
@@ -138,44 +138,45 @@
 
         .puzzle-container {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 400px;
+            width: 85%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            margin-top: 200px;
+            margin-top: 280px;
         }
 
         .puzzle-title {
             color: #2C2C2C;
-            font-size: 1.4em;
-            margin-bottom: 20px;
+            font-size: 1.2em;
+            margin-bottom: 15px;
             font-weight: bold;
         }
 
         .puzzle-content {
             color: #2C2C2C;
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 25px;
+            font-size: 1em;
+            line-height: 1.5;
+            margin-bottom: 20px;
         }
 
         .sequence-tap-puzzle {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .sequence-option {
             background: #8B4513;
             color: white;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
+            font-size: 0.95em;
         }
 
         .sequence-option:hover {
@@ -194,18 +195,19 @@
 
         .selected-sequence {
             background: rgba(139, 69, 19, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            min-height: 60px;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 12px 0;
+            min-height: 50px;
             width: 100%;
             color: #2C2C2C;
+            font-size: 0.9em;
         }
 
         .options-puzzle {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             width: 100%;
         }
 
@@ -213,9 +215,9 @@
             background: #8B4513;
             color: white;
             border: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 1.1em;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1em;
             cursor: pointer;
             font-family: inherit;
             transition: all 0.3s ease;
@@ -230,18 +232,18 @@
             background: #27ae60;
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 10px;
-            font-size: 1.1em;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1em;
             cursor: pointer;
             font-family: inherit;
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
         .puzzle-counter {
             color: #8B4513;
-            margin-top: 20px;
-            font-size: 1.1em;
+            margin-top: 15px;
+            font-size: 1em;
             font-weight: bold;
         }
 
@@ -252,28 +254,28 @@
 
         .code-input-container {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 400px;
+            width: 85%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            margin-top: 200px;
+            margin-top: 280px;
         }
 
         .number-pad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin: 25px 0;
+            gap: 12px;
+            margin: 20px 0;
         }
 
         .number-btn {
             background: #8B4513;
             color: white;
             border: none;
-            padding: 20px;
-            border-radius: 15px;
-            font-size: 1.5em;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 1.3em;
             cursor: pointer;
             font-family: inherit;
             font-weight: bold;
@@ -289,25 +291,25 @@
             background: #e74c3c;
             color: white;
             border: none;
-            padding: 15px 25px;
-            border-radius: 10px;
-            font-size: 1.1em;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1em;
             cursor: pointer;
             font-family: inherit;
-            margin-top: 15px;
-            margin-right: 10px;
+            margin-top: 12px;
+            margin-right: 8px;
         }
 
         .submit-btn {
             background: #27ae60;
             color: white;
             border: none;
-            padding: 15px 25px;
-            border-radius: 10px;
-            font-size: 1.1em;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1em;
             cursor: pointer;
             font-family: inherit;
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
         /* ЭКРАН ПОБЕДЫ */
@@ -317,16 +319,16 @@
 
         .victory-message {
             color: white;
-            font-size: 1.8em;
+            font-size: 1.6em;
             margin-bottom: 30px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-            line-height: 1.5;
+            line-height: 1.4;
             text-align: center;
         }
 
         .celebration {
-            font-size: 4em;
-            margin-bottom: 30px;
+            font-size: 3.5em;
+            margin-bottom: 25px;
             animation: bounce 0.8s infinite alternate;
         }
 
@@ -336,12 +338,12 @@
         }
 
         @media (max-width: 400px) {
-            .chest { width: 120px; height: 90px; }
-            .lock-digit { width: 35px; height: 35px; }
-            .puzzle-container { padding: 20px; margin-top: 150px; }
-            .code-input-container { padding: 20px; margin-top: 150px; }
-            .victory-message { font-size: 1.5em; }
-            .number-btn { padding: 15px; font-size: 1.3em; }
+            .chest { width: 200px; height: 150px; }
+            .lock-digit { width: 40px; height: 40px; }
+            .puzzle-container { padding: 20px; margin-top: 240px; max-width: 350px; }
+            .code-input-container { padding: 20px; margin-top: 240px; max-width: 350px; }
+            .victory-message { font-size: 1.4em; }
+            .number-btn { padding: 15px; font-size: 1.2em; }
         }
     </style>
 </head>

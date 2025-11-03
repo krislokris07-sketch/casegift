@@ -32,20 +32,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px 0;
+            padding: 15px 0 5px 0;
             flex-shrink: 0;
+            position: relative;
         }
 
         .chest {
-            width: 600px;
-            height: 420px;
+            width: 250px;
+            height: 175px;
             background: url('case_close.png') center/contain no-repeat;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             transition: all 0.8s ease;
+            transform-origin: center;
         }
 
         .chest.open {
-            transform: scale(1.3);
+            transform: scale(1.15);
             background-image: url('case_open.png');
             filter: drop-shadow(0 0 30px gold);
         }
@@ -55,12 +57,12 @@
             display: none;
             flex-direction: column;
             align-items: center;
-            margin: 10px 0;
-            padding: 15px;
+            margin: 8px 0;
+            padding: 12px;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            max-width: 300px;
+            max-width: 280px;
         }
 
         .code-input-section.active {
@@ -70,27 +72,28 @@
         .code-instruction {
             color: #8B4513;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: bold;
+            font-size: 0.9em;
         }
 
         .code-input-display {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
         .code-digit {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             background: #EAC774;
             border: 2px solid #8B4513;
             border-radius: 8px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: bold;
             color: #8B4513;
         }
@@ -103,16 +106,16 @@
         .number-pad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin: 15px 0;
+            gap: 6px;
+            margin: 12px 0;
         }
 
         .number-btn {
             background: #8B4513;
             color: white;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 1.2em;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1.1em;
             font-weight: bold;
             border: none;
             cursor: pointer;
@@ -123,13 +126,13 @@
         }
 
         .clear-btn, .submit-btn {
-            padding: 10px 20px;
+            padding: 8px 16px;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             font-family: inherit;
-            font-size: 1em;
-            margin: 0 5px;
+            font-size: 0.9em;
+            margin: 0 4px;
         }
 
         .clear-btn {
@@ -146,15 +149,15 @@
         .puzzles-nav {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin: 15px 0;
+            gap: 6px;
+            margin: 8px 0;
             padding: 0 20px;
             flex-shrink: 0;
         }
 
         .puzzle-tab {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             background: rgba(139, 69, 19, 0.3);
             color: white;
             border-radius: 50%;
@@ -165,6 +168,7 @@
             font-weight: bold;
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            font-size: 0.9em;
         }
 
         .puzzle-tab.active {
@@ -181,55 +185,55 @@
             background: rgba(139, 69, 19, 0.6);
         }
 
-        /* Контейнер загадок */
+        /* Контейнер загадок - БЛИЖЕ К СУНДУКУ */
         .game-content {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0 20px 20px;
+            padding: 0 20px 15px;
             overflow-y: auto;
-            position: relative;
-            z-index: 1;
+            margin-top: 0;
         }
 
         .puzzle-container {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
-            padding: 25px;
+            padding: 20px;
             max-width: 500px;
             width: 100%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .puzzle-title {
             color: #2C2C2C;
-            font-size: 1.3em;
-            margin-bottom: 15px;
+            font-size: 1.2em;
+            margin-bottom: 12px;
             font-weight: bold;
             text-align: center;
         }
 
         .puzzle-content {
             color: #2C2C2C;
-            font-size: 1em;
+            font-size: 0.95em;
             line-height: 1.5;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
         }
 
         .sequence-option, .option-button {
             background: #8B4513;
             color: white;
-            padding: 12px;
+            padding: 10px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-family: inherit;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             width: 100%;
             text-align: center;
+            font-size: 0.9em;
         }
 
         .sequence-option:hover, .option-button:hover {
@@ -243,12 +247,13 @@
         .check-button {
             background: #27ae60;
             color: white;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-family: inherit;
-            margin-top: 10px;
+            margin-top: 8px;
+            font-size: 0.9em;
         }
 
         .digit-reveal {
@@ -272,22 +277,22 @@
 
         .victory-message {
             color: white;
-            font-size: 1.6em;
+            font-size: 1.4em;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
             line-height: 1.4;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .celebration {
-            font-size: 3.5em;
-            margin-bottom: 25px;
+            font-size: 3em;
+            margin-bottom: 20px;
             animation: bounce 0.8s infinite alternate;
         }
 
         @keyframes bounce {
             from { transform: translateY(0) scale(1); }
-            to { transform: translateY(-20px) scale(1.1); }
+            to { transform: translateY(-15px) scale(1.1); }
         }
     </style>
 </head>
@@ -396,7 +401,7 @@
 
         function showPuzzle(num) {
             document.querySelectorAll('.puzzle-container').forEach(p => p.style.display = 'none');
-            document.getElementById('victoryMessage').style.display = 'none';
+            document.getElementById('victoryMessage').style.display = 'none');
             
             const codeSection = document.getElementById('codeInputSection');
             if (num === 5) {

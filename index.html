@@ -32,22 +32,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 15px 0 0 0; /* Уменьшил отступы */
+            padding: 15px 0 0 0;
             flex-shrink: 0;
             position: relative;
         }
 
         .chest {
-            width: 450px; /* Немного уменьшил */
+            width: 450px;
             height: 315px;
             background: url('case_close.png') center/contain no-repeat;
-            margin-bottom: 5px; /* Уменьшил отступ */
+            margin-bottom: 5px;
             transition: all 0.8s ease;
             transform-origin: center;
         }
 
         .chest.open {
-            transform: scale(1.02); /* Минимальное увеличение */
+            transform: scale(1.02);
             background-image: url('case_open.png');
             filter: drop-shadow(0 0 20px gold);
         }
@@ -57,7 +57,7 @@
             display: none;
             flex-direction: column;
             align-items: center;
-            margin: 5px 0; /* Уменьшил отступ */
+            margin: 5px 0;
             padding: 10px;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 12px;
@@ -150,7 +150,7 @@
             display: flex;
             justify-content: center;
             gap: 5px;
-            margin: 5px 0; /* Уменьшил отступ */
+            margin: 5px 0;
             padding: 0 20px;
             flex-shrink: 0;
         }
@@ -185,15 +185,15 @@
             background: rgba(139, 69, 19, 0.6);
         }
 
-        /* Контейнер загадок - ОЧЕНЬ БЛИЗКО К СУНДУКУ */
+        /* Контейнер загадок */
         .game-content {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0 15px 10px; /* Уменьшил отступы */
+            padding: 0 15px 10px;
             overflow-y: auto;
-            margin-top: -5px; /* Отрицательный отступ чтобы подтянуть ближе */
+            margin-top: -5px;
         }
 
         .puzzle-container {
@@ -203,7 +203,7 @@
             max-width: 480px;
             width: 100%;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            margin-top: 5px; /* Минимальный отступ */
+            margin-top: 5px;
         }
 
         .puzzle-title {
@@ -244,6 +244,7 @@
             background: #27ae60;
         }
 
+        /* Центрированная кнопка "Проверить" */
         .check-button {
             background: #27ae60;
             color: white;
@@ -254,6 +255,9 @@
             font-family: inherit;
             margin-top: 6px;
             font-size: 0.85em;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .digit-reveal {
@@ -275,13 +279,25 @@
             100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
         }
 
+        /* Плашка для победы */
+        #victoryMessage {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
         .victory-message {
-            color: white;
+            color: #2C2C2C;
             font-size: 1.2em;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
             line-height: 1.3;
             text-align: center;
             margin-top: 10px;
+            text-shadow: none;
         }
 
         .celebration {
@@ -355,7 +371,7 @@
         <div class="puzzle-container" id="puzzle2" style="display: none;">
             <div class="puzzle-title">Загадка 2: Коробок</div>
             <div class="puzzle-content">
-                Как поместить всё в спичечный коробок?<br>Ответ: нужно ______ коробок.
+                Как поместить куртку, шарф и кеды в спичечный коробок?<br>Ответ: нужно ______ коробок.
             </div>
             <button class="option-button" onclick="checkAnswer(2, 'Увеличить')">Увеличить</button>
             <button class="option-button" onclick="checkAnswer(2, 'Переименовать')">Переименовать</button>

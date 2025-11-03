@@ -21,41 +21,19 @@
             background: url('background.JPG') center/cover;
         }
 
-        .screen {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transition: opacity 0.6s ease;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .screen.active {
-            display: flex;
-            opacity: 1;
-        }
-
         /* Сундук */
         .chest-container {
-            position: absolute;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 10;
+            padding: 20px 0;
         }
 
         .chest {
-            width: 250px;
-            height: 180px;
+            width: 200px;
+            height: 140px;
             background: url('case_close.png') center/contain no-repeat;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             transition: all 0.8s ease;
         }
 
@@ -67,13 +45,13 @@
 
         .lock {
             display: flex;
-            gap: 12px;
-            margin-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
         .lock-digit {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             background: #EAC774;
             color: #8B4513;
             border: 2px solid #8B4513;
@@ -81,68 +59,74 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.3em;
+            font-size: 1.2em;
             font-weight: bold;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        .digit-reveal {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 8em;
-            color: gold;
-            text-shadow: 0 0 30px rgba(255,215,0,0.8);
-            z-index: 100;
-            animation: revealDigit 1s ease-out;
-            display: none;
+        /* Навигация */
+        .puzzles-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
+            padding: 0 20px;
         }
 
-        @keyframes revealDigit {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-            50% { transform: translate(-50%, -50%) scale(1.5); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
-        }
-
-        .start-button {
-            background: #8B4513;
+        .puzzle-tab {
+            width: 40px;
+            height: 40px;
+            background: rgba(139, 69, 19, 0.3);
             color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 1.2em;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            font-family: inherit;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
-        .instruction {
-            color: white;
-            font-size: 1.2em;
-            margin-top: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            max-width: 300px;
-            line-height: 1.4;
+        .puzzle-tab.active {
+            background: #8B4513;
+            transform: scale(1.1);
+            border-color: gold;
+        }
+
+        .puzzle-tab.completed {
+            background: #27ae60;
+        }
+
+        .puzzle-tab:not(.completed):not(.active):hover {
+            background: rgba(139, 69, 19, 0.6);
+        }
+
+        /* Контейнер загадок */
+        .game-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px 20px;
         }
 
         .puzzle-container {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 25px;
-            max-width: 400px;
-            width: 85%;
+            max-width: 500px;
+            width: 100%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            margin-top: 280px;
+            margin-top: 20px;
         }
 
         .puzzle-title {
             color: #2C2C2C;
-            font-size: 1.2em;
+            font-size: 1.3em;
             margin-bottom: 15px;
             font-weight: bold;
+            text-align: center;
         }
 
         .puzzle-content {
@@ -150,23 +134,31 @@
             font-size: 1em;
             line-height: 1.5;
             margin-bottom: 20px;
+            text-align: center;
         }
 
-        .sequence-option {
+        /* Общие стили для кнопок */
+        .sequence-option, .option-button, .number-btn {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .sequence-option, .option-button {
             background: #8B4513;
             color: white;
             padding: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            font-size: 0.95em;
-            margin-bottom: 8px;
+            font-size: 1em;
+            margin-bottom: 10px;
+            width: 100%;
         }
 
-        .sequence-option:hover {
+        .sequence-option:hover, .option-button:hover {
             background: #A0522D;
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         .sequence-option.selected {
@@ -186,40 +178,28 @@
             font-size: 0.9em;
         }
 
-        .option-button, .check-button, .clear-btn, .submit-btn {
-            cursor: pointer;
-            font-family: inherit;
-            border: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .option-button {
-            background: #8B4513;
-            color: white;
-            padding: 12px;
-            font-size: 1em;
-            margin-bottom: 10px;
-        }
-
-        .option-button:hover {
-            background: #A0522D;
-        }
-
-        .check-button {
+        .check-button, .submit-btn {
             background: #27ae60;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1em;
+            margin: 10px 5px 0 0;
         }
 
-        .code-input-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 25px;
-            max-width: 400px;
-            width: 85%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            margin-top: 280px;
+        .clear-btn {
+            background: #e74c3c;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1em;
+            margin: 10px 5px 0 0;
         }
 
         .number-pad {
@@ -243,17 +223,23 @@
             transform: scale(1.1);
         }
 
-        .clear-btn {
-            background: #e74c3c;
-            color: white;
-            padding: 10px 18px;
-            margin-right: 8px;
+        .digit-reveal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8em;
+            color: gold;
+            text-shadow: 0 0 30px rgba(255,215,0,0.8);
+            z-index: 100;
+            animation: revealDigit 1s ease-out;
+            display: none;
         }
 
-        .submit-btn {
-            background: #27ae60;
-            color: white;
-            padding: 10px 18px;
+        @keyframes revealDigit {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.5); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
         }
 
         .victory-message {
@@ -262,6 +248,7 @@
             text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
             line-height: 1.4;
             text-align: center;
+            margin-top: 20px;
         }
 
         .celebration {
@@ -277,25 +264,30 @@
     </style>
 </head>
 <body>
+    <!-- Общий контейнер -->
     <div class="chest-container">
         <div class="chest" id="chest"></div>
         <div class="lock">
-            <div class="lock-digit">?</div>
-            <div class="lock-digit">?</div>
-            <div class="lock-digit">?</div>
-            <div class="lock-digit">?</div>
+            <div class="lock-digit" id="digit1">?</div>
+            <div class="lock-digit" id="digit2">?</div>
+            <div class="lock-digit" id="digit3">?</div>
+            <div class="lock-digit" id="digit4">?</div>
         </div>
     </div>
 
-    <!-- Приветствие -->
-    <div class="screen active" id="welcomeScreen">
-        <button class="start-button" onclick="startPuzzles()">Начать разгадывать</button>
-        <div class="instruction">Разгадай загадки, чтобы открыть сундук!</div>
+    <!-- Навигация -->
+    <div class="puzzles-nav">
+        <div class="puzzle-tab active" onclick="showPuzzle(1)">1</div>
+        <div class="puzzle-tab" onclick="showPuzzle(2)">2</div>
+        <div class="puzzle-tab" onclick="showPuzzle(3)">3</div>
+        <div class="puzzle-tab" onclick="showPuzzle(4)">4</div>
+        <div class="puzzle-tab" onclick="showPuzzle(5)">🔒</div>
     </div>
 
-    <!-- Загадка 1 -->
-    <div class="screen" id="puzzle1Screen">
-        <div class="puzzle-container">
+    <!-- Контент загадок -->
+    <div class="game-content">
+        <!-- Загадка 1 -->
+        <div class="puzzle-container" id="puzzle1">
             <div class="puzzle-title">Загадка 1: Последовательность</div>
             <div class="puzzle-content">Нажми события в правильном порядке:</div>
             <div class="sequence-option" onclick="tapSequence(this)">Посмотрел на термометр</div>
@@ -305,11 +297,9 @@
             <div class="selected-sequence" id="selectedSequence">Твоя последовательность:</div>
             <button class="check-button" onclick="checkSequenceAnswer()">Проверить</button>
         </div>
-    </div>
 
-    <!-- Загадка 2 -->
-    <div class="screen" id="puzzle2Screen">
-        <div class="puzzle-container">
+        <!-- Загадка 2 -->
+        <div class="puzzle-container" id="puzzle2" style="display: none;">
             <div class="puzzle-title">Загадка 2: Коробок</div>
             <div class="puzzle-content">
                 Как поместить всё в спичечный коробок?<br>Ответ: нужно ______ коробок.
@@ -318,22 +308,18 @@
             <button class="option-button" onclick="checkAnswer(2, 'Переименовать')">Переименовать</button>
             <button class="option-button" onclick="checkAnswer(2, 'Уменьшить')">Уменьшить</button>
         </div>
-    </div>
 
-    <!-- Загадка 3 -->
-    <div class="screen" id="puzzle3Screen">
-        <div class="puzzle-container">
+        <!-- Загадка 3 -->
+        <div class="puzzle-container" id="puzzle3" style="display: none;">
             <div class="puzzle-title">Загадка 3: Комната</div>
             <div class="puzzle-content">Ты видишь раскрытый зонт и сухие ботинки. Был ли дождь?</div>
             <button class="option-button" onclick="checkAnswer(3, 'Да')">Да</button>
             <button class="option-button" onclick="checkAnswer(3, 'Нет')">Нет</button>
             <button class="option-button" onclick="checkAnswer(3, 'Неизвестно')">Неизвестно</button>
         </div>
-    </div>
 
-    <!-- Загадка 4 -->
-    <div class="screen" id="puzzle4Screen">
-        <div class="puzzle-container">
+        <!-- Загадка 4 -->
+        <div class="puzzle-container" id="puzzle4" style="display: none;">
             <div class="puzzle-title">Загадка 4: Аналогия</div>
             <div class="puzzle-content">
                 Если «тёплый свитер» противоположен «лёгкой футболке»,<br>
@@ -343,18 +329,10 @@
             <button class="option-button" onclick="checkAnswer(4, 'Осенним ботинкам')">Осенним ботинкам</button>
             <button class="option-button" onclick="checkAnswer(4, 'Домашним тапочкам')">Домашним тапочкам</button>
         </div>
-    </div>
 
-    <!-- Ввод кода -->
-    <div class="screen" id="codeInputScreen">
-        <div class="code-input-container">
+        <!-- Ввод кода -->
+        <div class="puzzle-container" id="puzzle5" style="display: none;">
             <div class="puzzle-title">Введи код сундука</div>
-            <div class="lock">
-                <div class="lock-digit" id="inputDigit1">?</div>
-                <div class="lock-digit" id="inputDigit2">?</div>
-                <div class="lock-digit" id="inputDigit3">?</div>
-                <div class="lock-digit" id="inputDigit4">?</div>
-            </div>
             <div class="number-pad">
                 <button class="number-btn" onclick="inputNumber(1)">1</button>
                 <button class="number-btn" onclick="inputNumber(2)">2</button>
@@ -370,12 +348,12 @@
             <button class="clear-btn" onclick="clearCode()">Очистить</button>
             <button class="submit-btn" onclick="checkFinalCode()">Открыть</button>
         </div>
-    </div>
 
-    <!-- Победа -->
-    <div class="screen" id="victoryScreen">
-        <div class="celebration">🎉</div>
-        <div class="victory-message">Ты открыл сундук! Твои сокровища ждут тебя 🎁</div>
+        <!-- Победа -->
+        <div id="victoryMessage" style="display: none;">
+            <div class="celebration">🎉</div>
+            <div class="victory-message">Ты открыл сундук! Твои сокровища ждут тебя 🎁</div>
+        </div>
     </div>
 
     <div class="digit-reveal" id="digitReveal"></div>
@@ -385,14 +363,31 @@
         const correctSequence = ["Почувствовал холод", "Посмотрел на термометр", "Надел куртку", "Вышел на улицу"];
         const correctCode = [7, 2, 5, 9];
         let userInput = [];
+        let completedPuzzles = new Set([1]); // Загадка 1 доступна сразу
 
-        function showScreen(id) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
+        function showPuzzle(num) {
+            // Скрываем все загадки
+            document.querySelectorAll('.puzzle-container').forEach(p => p.style.display = 'none');
+            document.getElementById('victoryMessage').style.display = 'none';
+            
+            // Показываем выбранную, если она доступна
+            if (completedPuzzles.has(num) || num === 1) {
+                document.getElementById(`puzzle${num}`).style.display = 'block';
+                
+                // Обновляем активную вкладку
+                document.querySelectorAll('.puzzle-tab').forEach(tab => tab.classList.remove('active'));
+                document.querySelectorAll('.puzzle-tab')[num - 1].classList.add('active');
+            }
         }
 
-        function startPuzzles() {
-            showScreen('puzzle1Screen');
+        function completePuzzle(num) {
+            completedPuzzles.add(num + 1);
+            document.querySelectorAll('.puzzle-tab')[num - 1].classList.add('completed');
+            
+            // Автоматически переходим к следующей загадке
+            if (num < 5) {
+                showPuzzle(num + 1);
+            }
         }
 
         function tapSequence(el) {
@@ -411,8 +406,8 @@
                 return;
             }
             if (JSON.stringify(sequence) === JSON.stringify(correctSequence)) {
-                showDigit(7);
-                setTimeout(() => showScreen('puzzle2Screen'), 1500);
+                showDigit(7, 1);
+                completePuzzle(1);
             } else {
                 alert('Неправильно!');
                 sequence = [];
@@ -424,42 +419,56 @@
         function checkAnswer(num, ans) {
             const correct = {2: 'Переименовать', 3: 'Да', 4: 'Летним сандалиям'};
             if (ans === correct[num]) {
-                showDigit(correctCode[num - 1]);
-                setTimeout(() => {
-                    if (num < 4) showScreen(`puzzle${num + 1}Screen`);
-                    else showScreen('codeInputScreen');
-                }, 1500);
-            } else alert('Неверно!');
+                const digit = correctCode[num - 1];
+                showDigit(digit, num);
+                completePuzzle(num);
+            } else {
+                alert('Неверно!');
+            }
         }
 
         function inputNumber(n) {
             if (userInput.length < 4) {
                 userInput.push(n);
-                document.getElementById(`inputDigit${userInput.length}`).textContent = n;
+                document.getElementById(`digit${userInput.length}`).textContent = n;
             }
         }
 
         function clearCode() {
             userInput = [];
-            for (let i = 1; i <= 4; i++) document.getElementById(`inputDigit${i}`).textContent = '?';
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`digit${i}`).textContent = '?';
+            }
         }
 
         function checkFinalCode() {
-            if (JSON.stringify(userInput) === JSON.stringify(correctCode)) openChest();
-            else alert('Неправильный код!');
+            if (JSON.stringify(userInput) === JSON.stringify(correctCode)) {
+                openChest();
+            } else {
+                alert('Неправильный код!');
+                clearCode();
+            }
         }
 
         function openChest() {
-            showScreen('victoryScreen');
             document.getElementById('chest').classList.add('open');
+            document.querySelectorAll('.puzzle-container').forEach(p => p.style.display = 'none');
+            document.getElementById('victoryMessage').style.display = 'block';
         }
 
-        function showDigit(num) {
+        function showDigit(num, puzzleNum) {
             const d = document.getElementById('digitReveal');
             d.textContent = num;
             d.style.display = 'block';
+            
+            // Обновляем цифру в замке
+            document.getElementById(`digit${puzzleNum}`).textContent = num;
+            
             setTimeout(() => d.style.display = 'none', 1000);
         }
+
+        // Инициализация
+        showPuzzle(1);
     </script>
 </body>
 </html>

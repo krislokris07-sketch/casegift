@@ -19,6 +19,8 @@
             font-family: 'Georgia', serif;
             overflow: hidden;
             background: url('background.JPG') center/cover;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Сундук */
@@ -27,6 +29,7 @@
             flex-direction: column;
             align-items: center;
             padding: 20px 0;
+            flex-shrink: 0;
         }
 
         .chest {
@@ -71,6 +74,7 @@
             gap: 8px;
             margin: 15px 0;
             padding: 0 20px;
+            flex-shrink: 0;
         }
 
         .puzzle-tab {
@@ -109,6 +113,7 @@
             flex-direction: column;
             align-items: center;
             padding: 0 20px 20px;
+            overflow-y: auto;
         }
 
         .puzzle-container {
@@ -223,12 +228,24 @@
             transform: scale(1.1);
         }
 
-        /* Стили для ввода кода */
+        /* Стили для ввода кода - ТОЛЬКО ПОД СУНДУКОМ */
+        .code-input-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+
+        .code-input-section.active {
+            display: flex;
+        }
+
         .code-input-display {
             display: flex;
             gap: 10px;
             justify-content: center;
-            margin: 20px 0;
+            margin: 15px 0;
         }
 
         .code-digit {
@@ -296,6 +313,13 @@
             text-align: center;
             font-size: 0.9em;
         }
+
+        .code-instruction {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
     </style>
 </head>
 <body>
@@ -317,6 +341,33 @@
         <div class="puzzle-tab" onclick="showPuzzle(3)">3</div>
         <div class="puzzle-tab" onclick="showPuzzle(4)">4</div>
         <div class="puzzle-tab" onclick="showPuzzle(5)">🔒</div>
+    </div>
+
+    <!-- Секция ввода кода - ТОЛЬКО ЗДЕСЬ -->
+    <div class="code-input-section" id="codeInputSection">
+        <div class="code-instruction">Введи код из 4 цифр (вспомни из загадок):</div>
+        <div class="code-input-display">
+            <div class="code-digit" id="inputDigit1">•</div>
+            <div class="code-digit" id="inputDigit2">•</div>
+            <div class="code-digit" id="inputDigit3">•</div>
+            <div class="code-digit" id="inputDigit4">•</div>
+        </div>
+        <div class="number-pad">
+            <button class="number-btn" onclick="inputNumber(1)">1</button>
+            <button class="number-btn" onclick="inputNumber(2)">2</button>
+            <button class="number-btn" onclick="inputNumber(3)">3</button>
+            <button class="number-btn" onclick="inputNumber(4)">4</button>
+            <button class="number-btn" onclick="inputNumber(5)">5</button>
+            <button class="number-btn" onclick="inputNumber(6)">6</button>
+            <button class="number-btn" onclick="inputNumber(7)">7</button>
+            <button class="number-btn" onclick="inputNumber(8)">8</button>
+            <button class="number-btn" onclick="inputNumber(9)">9</button>
+            <button class="number-btn" onclick="inputNumber(0)">0</button>
+        </div>
+        <div>
+            <button class="clear-btn" onclick="clearCode()">Очистить</button>
+            <button class="submit-btn" onclick="checkFinalCode()">Открыть</button>
+        </div>
     </div>
 
     <!-- Контент загадок -->
@@ -365,38 +416,6 @@
             <button class="option-button" onclick="checkAnswer(4, 'Домашним тапочкам')">Домашним тапочкам</button>
         </div>
 
-        <!-- Ввод кода -->
-        <div class="puzzle-container" id="puzzle5" style="display: none;">
-            <div class="puzzle-title">Введи код сундука</div>
-            <div class="puzzle-content">
-                Вспомни цифры, которые ты получил из загадок, и введи код из 4 цифр:
-            </div>
-            <div class="memory-hint">Цифры больше не видны - нужно вспомнить!</div>
-            
-            <!-- Отображение вводимого кода (только звёздочки/точки) -->
-            <div class="code-input-display">
-                <div class="code-digit" id="inputDigit1">•</div>
-                <div class="code-digit" id="inputDigit2">•</div>
-                <div class="code-digit" id="inputDigit3">•</div>
-                <div class="code-digit" id="inputDigit4">•</div>
-            </div>
-            
-            <div class="number-pad">
-                <button class="number-btn" onclick="inputNumber(1)">1</button>
-                <button class="number-btn" onclick="inputNumber(2)">2</button>
-                <button class="number-btn" onclick="inputNumber(3)">3</button>
-                <button class="number-btn" onclick="inputNumber(4)">4</button>
-                <button class="number-btn" onclick="inputNumber(5)">5</button>
-                <button class="number-btn" onclick="inputNumber(6)">6</button>
-                <button class="number-btn" onclick="inputNumber(7)">7</button>
-                <button class="number-btn" onclick="inputNumber(8)">8</button>
-                <button class="number-btn" onclick="inputNumber(9)">9</button>
-                <button class="number-btn" onclick="inputNumber(0)">0</button>
-            </div>
-            <button class="clear-btn" onclick="clearCode()">Очистить</button>
-            <button class="submit-btn" onclick="checkFinalCode()">Открыть</button>
-        </div>
-
         <!-- Победа -->
         <div id="victoryMessage" style="display: none;">
             <div class="celebration">🎉</div>
@@ -419,9 +438,19 @@
             document.querySelectorAll('.puzzle-container').forEach(p => p.style.display = 'none');
             document.getElementById('victoryMessage').style.display = 'none';
             
-            // Показываем выбранную, если она доступна
+            // Управляем отображением секции ввода кода
+            const codeSection = document.getElementById('codeInputSection');
+            if (num === 5) {
+                codeSection.classList.add('active');
+            } else {
+                codeSection.classList.remove('active');
+            }
+            
+            // Показываем выбранную загадку, если она доступна
             if (completedPuzzles.has(num) || num === 1) {
-                document.getElementById(`puzzle${num}`).style.display = 'block';
+                if (num !== 5) {
+                    document.getElementById(`puzzle${num}`).style.display = 'block';
+                }
                 
                 // Обновляем активную вкладку
                 document.querySelectorAll('.puzzle-tab').forEach(tab => tab.classList.remove('active'));
@@ -509,6 +538,7 @@
             document.getElementById('chest').classList.add('open');
             document.querySelectorAll('.puzzle-container').forEach(p => p.style.display = 'none');
             document.getElementById('victoryMessage').style.display = 'block';
+            document.getElementById('codeInputSection').classList.remove('active');
         }
 
         function showDigit(num, puzzleNum) {

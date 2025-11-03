@@ -71,6 +71,13 @@
             font-size: 1.5em;
             font-weight: bold;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .lock-digit.revealed {
+            background: #27ae60;
+            color: white;
+            transform: scale(1.1);
         }
 
         .start-button {
@@ -405,7 +412,7 @@
         <div class="code-input-container">
             <div class="puzzle-title">Введи код сундука</div>
             <div class="puzzle-content">
-                Ты узнал все цифры! Теперь введи код: 3-3-0-1
+                Ты собрал все цифры! Теперь введи код, который ты узнал из загадок.
             </div>
             <div class="lock">
                 <div class="lock-digit" id="inputDigit1">?</div>
@@ -540,6 +547,7 @@
                 if (puzzleNumber < 4) {
                     showPuzzle(puzzleNumber + 1);
                 } else {
+                    // Все загадки решены, показываем экран ввода кода
                     showCodeInput();
                 }
             } else {
@@ -549,7 +557,22 @@
 
         function updateCode(index, digit) {
             userCode[index] = digit;
-            document.getElementById(`digit${index + 1}`).textContent = digit;
+            const digitElement = document.getElementById(`digit${index + 1}`);
+            digitElement.textContent = digit;
+            digitElement.classList.add('revealed');
+            
+            // Показываем сундук с обновленным кодом на секунду
+            document.getElementById('chestScreen').style.display = 'flex';
+            document.querySelectorAll('.puzzle-screen').forEach(screen => {
+                screen.style.display = 'none';
+            });
+            
+            setTimeout(() => {
+                document.getElementById('chestScreen').style.display = 'none';
+                if (index < 3) { // Если это не последняя цифра
+                    showPuzzle(index + 2);
+                }
+            }, 1500);
         }
 
         function inputNumber(number) {

@@ -25,8 +25,8 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            transition: all 0.5s ease;
-            display: flex;
+            transition: opacity 0.6s ease;
+            display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -34,7 +34,12 @@
             text-align: center;
         }
 
-        /* СУНДУК */
+        .screen.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Сундук */
         .chest-container {
             position: absolute;
             top: 30px;
@@ -58,6 +63,12 @@
             transform: scale(1.15);
             background-image: url('case_open.png');
             filter: drop-shadow(0 0 30px gold);
+        }
+
+        .lock {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
         }
 
         .lock-digit {
@@ -94,14 +105,6 @@
             100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
         }
 
-        /* ЭКРАН ПРИВЕТСТВИЯ */
-        .welcome-screen {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
         .start-button {
             background: #8B4513;
             color: white;
@@ -123,11 +126,6 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
             max-width: 300px;
             line-height: 1.4;
-        }
-
-        /* ЭКРАН ЗАГАДОК */
-        .puzzle-screen {
-            display: none;
         }
 
         .puzzle-container {
@@ -154,14 +152,6 @@
             margin-bottom: 20px;
         }
 
-        .sequence-tap-puzzle {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            width: 100%;
-            margin-bottom: 15px;
-        }
-
         .sequence-option {
             background: #8B4513;
             color: white;
@@ -171,6 +161,7 @@
             transition: all 0.3s ease;
             text-align: center;
             font-size: 0.95em;
+            margin-bottom: 8px;
         }
 
         .sequence-option:hover {
@@ -180,7 +171,6 @@
 
         .sequence-option.selected {
             background: #27ae60;
-            transform: scale(1.05);
         }
 
         .sequence-option.incorrect {
@@ -189,61 +179,37 @@
 
         .selected-sequence {
             background: rgba(139, 69, 19, 0.1);
-            padding: 12px;
+            padding: 10px;
             border-radius: 8px;
             margin: 12px 0;
-            min-height: 50px;
-            width: 100%;
             color: #2C2C2C;
             font-size: 0.9em;
         }
 
-        .options-puzzle {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            width: 100%;
+        .option-button, .check-button, .clear-btn, .submit-btn {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
         .option-button {
             background: #8B4513;
             color: white;
-            border: none;
             padding: 12px;
-            border-radius: 8px;
             font-size: 1em;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all 0.3s ease;
+            margin-bottom: 10px;
         }
 
         .option-button:hover {
             background: #A0522D;
-            transform: scale(1.05);
         }
 
         .check-button {
             background: #27ae60;
             color: white;
-            border: none;
             padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            font-family: inherit;
-            margin-top: 12px;
-        }
-
-        .puzzle-counter {
-            color: #8B4513;
-            margin-top: 15px;
-            font-size: 1em;
-            font-weight: bold;
-        }
-
-        /* ЭКРАН ВВОДА КОДА */
-        .code-input-screen {
-            display: none;
         }
 
         .code-input-container {
@@ -256,13 +222,6 @@
             margin-top: 280px;
         }
 
-        .lock {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 15px;
-            justify-content: center;
-        }
-
         .number-pad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -273,14 +232,10 @@
         .number-btn {
             background: #8B4513;
             color: white;
-            border: none;
             padding: 18px;
             border-radius: 12px;
             font-size: 1.3em;
-            cursor: pointer;
-            font-family: inherit;
             font-weight: bold;
-            transition: all 0.3s ease;
         }
 
         .number-btn:hover {
@@ -291,37 +246,19 @@
         .clear-btn {
             background: #e74c3c;
             color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            font-family: inherit;
-            margin-top: 12px;
+            padding: 10px 18px;
             margin-right: 8px;
         }
 
         .submit-btn {
             background: #27ae60;
             color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            font-family: inherit;
-            margin-top: 12px;
-        }
-
-        /* ЭКРАН ПОБЕДЫ */
-        .victory-screen {
-            display: none;
+            padding: 10px 18px;
         }
 
         .victory-message {
             color: white;
             font-size: 1.6em;
-            margin-bottom: 30px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
             line-height: 1.4;
             text-align: center;
@@ -337,106 +274,81 @@
             from { transform: translateY(0) scale(1); }
             to { transform: translateY(-20px) scale(1.1); }
         }
-
-        @media (max-width: 400px) {
-            .chest { width: 200px; height: 150px; }
-            .lock-digit { width: 40px; height: 40px; }
-            .puzzle-container { padding: 20px; margin-top: 240px; max-width: 350px; }
-            .code-input-container { padding: 20px; margin-top: 240px; max-width: 350px; }
-            .victory-message { font-size: 1.4em; }
-            .number-btn { padding: 15px; font-size: 1.2em; }
-        }
     </style>
 </head>
 <body>
-    <!-- СУНДУК -->
     <div class="chest-container">
         <div class="chest" id="chest"></div>
+        <div class="lock">
+            <div class="lock-digit">?</div>
+            <div class="lock-digit">?</div>
+            <div class="lock-digit">?</div>
+            <div class="lock-digit">?</div>
+        </div>
     </div>
 
-    <!-- ЭКРАН ПРИВЕТСТВИЯ -->
-    <div class="screen welcome-screen" id="welcomeScreen">
+    <!-- Приветствие -->
+    <div class="screen active" id="welcomeScreen">
         <button class="start-button" onclick="startPuzzles()">Начать разгадывать</button>
-        <div class="instruction">Разгадай загадки чтобы открыть сундук</div>
+        <div class="instruction">Разгадай загадки, чтобы открыть сундук!</div>
     </div>
 
-    <!-- ЭКРАНЫ ЗАГАДОК -->
-    <div class="screen puzzle-screen" id="puzzle1Screen">
+    <!-- Загадка 1 -->
+    <div class="screen" id="puzzle1Screen">
         <div class="puzzle-container">
-            <div class="puzzle-title">Загадка 1: Логическая цепочка</div>
-            <div class="puzzle-content">Нажми на события в правильной последовательности:</div>
-            <div class="sequence-tap-puzzle">
-                <div class="sequence-option" data-correct-order="2" onclick="tapSequence(this)">Посмотрел на термометр</div>
-                <div class="sequence-option" data-correct-order="1" onclick="tapSequence(this)">Почувствовал холод</div>
-                <div class="sequence-option" data-correct-order="3" onclick="tapSequence(this)">Надел куртку</div>
-                <div class="sequence-option" data-correct-order="4" onclick="tapSequence(this)">Вышел на улицу</div>
-            </div>
+            <div class="puzzle-title">Загадка 1: Последовательность</div>
+            <div class="puzzle-content">Нажми события в правильном порядке:</div>
+            <div class="sequence-option" onclick="tapSequence(this)">Посмотрел на термометр</div>
+            <div class="sequence-option" onclick="tapSequence(this)">Почувствовал холод</div>
+            <div class="sequence-option" onclick="tapSequence(this)">Надел куртку</div>
+            <div class="sequence-option" onclick="tapSequence(this)">Вышел на улицу</div>
             <div class="selected-sequence" id="selectedSequence">Твоя последовательность:</div>
             <button class="check-button" onclick="checkSequenceAnswer()">Проверить</button>
-            <div class="puzzle-counter">1/4</div>
         </div>
     </div>
 
-    <div class="screen puzzle-screen" id="puzzle2Screen">
+    <!-- Загадка 2 -->
+    <div class="screen" id="puzzle2Screen">
         <div class="puzzle-container">
-            <div class="puzzle-title">Загадка 2: Спичечный коробок</div>
+            <div class="puzzle-title">Загадка 2: Коробок</div>
             <div class="puzzle-content">
-                У тебя есть только один спичечный коробок.<br>
-                Как поместить в него:<br>
-                - 10 пар носков<br>
-                - 5 свитеров<br>
-                - 3 пары обуви?<br><br>
-                Ответ: нужно ______ коробок
+                Как поместить всё в спичечный коробок?<br>Ответ: нужно ______ коробок.
             </div>
-            <div class="options-puzzle">
-                <button class="option-button" onclick="checkAnswer(2, 'Увеличить')">Увеличить</button>
-                <button class="option-button" onclick="checkAnswer(2, 'Уменьшить')">Уменьшить</button>
-                <button class="option-button" onclick="checkAnswer(2, 'Переименовать')">Переименовать</button>
-            </div>
-            <div class="puzzle-counter">2/4</div>
+            <button class="option-button" onclick="checkAnswer(2, 'Увеличить')">Увеличить</button>
+            <button class="option-button" onclick="checkAnswer(2, 'Переименовать')">Переименовать</button>
+            <button class="option-button" onclick="checkAnswer(2, 'Уменьшить')">Уменьшить</button>
         </div>
     </div>
 
-    <div class="screen puzzle-screen" id="puzzle3Screen">
+    <!-- Загадка 3 -->
+    <div class="screen" id="puzzle3Screen">
         <div class="puzzle-container">
-            <div class="puzzle-title">Загадка 3: Ситуация в комнате</div>
-            <div class="puzzle-content">
-                Ты заходишь в комнату. Видишь:<br>
-                - Раскрытый зонт на полу<br>
-                - Мокрый плащ на стуле<br>
-                - Сухие ботинки у двери<br><br>
-                Был ли дождь на улице?
-            </div>
-            <div class="options-puzzle">
-                <button class="option-button" onclick="checkAnswer(3, 'Да')">Да</button>
-                <button class="option-button" onclick="checkAnswer(3, 'Нет')">Нет</button>
-                <button class="option-button" onclick="checkAnswer(3, 'Неизвестно')">Неизвестно</button>
-            </div>
-            <div class="puzzle-counter">3/4</div>
+            <div class="puzzle-title">Загадка 3: Комната</div>
+            <div class="puzzle-content">Ты видишь раскрытый зонт и сухие ботинки. Был ли дождь?</div>
+            <button class="option-button" onclick="checkAnswer(3, 'Да')">Да</button>
+            <button class="option-button" onclick="checkAnswer(3, 'Нет')">Нет</button>
+            <button class="option-button" onclick="checkAnswer(3, 'Неизвестно')">Неизвестно</button>
         </div>
     </div>
 
-    <div class="screen puzzle-screen" id="puzzle4Screen">
+    <!-- Загадка 4 -->
+    <div class="screen" id="puzzle4Screen">
         <div class="puzzle-container">
             <div class="puzzle-title">Загадка 4: Аналогия</div>
             <div class="puzzle-content">
-                Если 'тёплый свитер' противоположен 'лёгкой футболке',<br>
-                то 'зимние сапоги' противоположны _____?
+                Если «тёплый свитер» противоположен «лёгкой футболке»,<br>
+                то «зимние сапоги» противоположны...
             </div>
-            <div class="options-puzzle">
-                <button class="option-button" onclick="checkAnswer(4, 'Летним сандалиям')">Летним сандалиям</button>
-                <button class="option-button" onclick="checkAnswer(4, 'Осенним ботинкам')">Осенним ботинкам</button>
-                <button class="option-button" onclick="checkAnswer(4, 'Домашним тапочкам')">Домашним тапочкам</button>
-            </div>
-            <div class="puzzle-counter">4/4</div>
+            <button class="option-button" onclick="checkAnswer(4, 'Летним сандалиям')">Летним сандалиям</button>
+            <button class="option-button" onclick="checkAnswer(4, 'Осенним ботинкам')">Осенним ботинкам</button>
+            <button class="option-button" onclick="checkAnswer(4, 'Домашним тапочкам')">Домашним тапочкам</button>
         </div>
     </div>
 
-    <!-- ЭКРАН ВВОДА КОДА -->
-    <div class="screen code-input-screen" id="codeInputScreen">
+    <!-- Ввод кода -->
+    <div class="screen" id="codeInputScreen">
         <div class="code-input-container">
             <div class="puzzle-title">Введи код сундука</div>
-            <div class="puzzle-content">Ты узнал все цифры! Теперь введи код из 4 цифр</div>
             <div class="lock">
                 <div class="lock-digit" id="inputDigit1">?</div>
                 <div class="lock-digit" id="inputDigit2">?</div>
@@ -455,86 +367,69 @@
                 <button class="number-btn" onclick="inputNumber(9)">9</button>
                 <button class="number-btn" onclick="inputNumber(0)">0</button>
             </div>
-            <div>
-                <button class="clear-btn" onclick="clearCode()">Очистить</button>
-                <button class="submit-btn" onclick="checkFinalCode()">Открыть сундук</button>
-            </div>
+            <button class="clear-btn" onclick="clearCode()">Очистить</button>
+            <button class="submit-btn" onclick="checkFinalCode()">Открыть</button>
         </div>
     </div>
 
-    <!-- ЭКРАН ПОБЕДЫ -->
-    <div class="screen victory-screen" id="victoryScreen">
+    <!-- Победа -->
+    <div class="screen" id="victoryScreen">
         <div class="celebration">🎉</div>
-        <div class="victory-message">
-            Ты открыл сундук!<br>
-            Твои сокровища в верхнем ящике комода! 🎁
-        </div>
+        <div class="victory-message">Ты открыл сундук! Твои сокровища ждут тебя 🎁</div>
     </div>
 
-    <!-- АНИМАЦИЯ ПОКАЗА ЦИФРЫ -->
     <div class="digit-reveal" id="digitReveal"></div>
 
     <script>
-        let currentScreen = 0;
         let sequence = [];
         const correctSequence = ["Почувствовал холод", "Посмотрел на термометр", "Надел куртку", "Вышел на улицу"];
         const correctCode = [7, 2, 5, 9];
         let userInput = [];
 
-        function startPuzzles() {
-            document.getElementById('welcomeScreen').style.display = 'none';
-            document.getElementById('puzzle1Screen').style.display = 'flex';
+        function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
         }
 
-        function tapSequence(element) {
-            const text = element.textContent;
+        function startPuzzles() {
+            showScreen('puzzle1Screen');
+        }
+
+        function tapSequence(el) {
+            const text = el.textContent;
             if (!sequence.includes(text)) {
                 sequence.push(text);
-                element.classList.add('selected');
-                document.getElementById('selectedSequence').textContent = 'Твоя последовательность: ' + sequence.join(' → ');
+                el.classList.add('selected');
+                document.getElementById('selectedSequence').textContent =
+                    'Твоя последовательность: ' + sequence.join(' → ');
             }
         }
 
         function checkSequenceAnswer() {
+            if (sequence.length < 4) {
+                alert('Выбери все пункты!');
+                return;
+            }
             if (JSON.stringify(sequence) === JSON.stringify(correctSequence)) {
                 showDigit(7);
-                setTimeout(() => nextPuzzle(2), 1500);
+                setTimeout(() => showScreen('puzzle2Screen'), 1500);
             } else {
-                document.querySelectorAll('.sequence-option').forEach(opt => opt.classList.add('incorrect'));
-                setTimeout(() => location.reload(), 1000);
+                alert('Неправильно!');
+                sequence = [];
+                document.querySelectorAll('.sequence-option').forEach(opt => opt.classList.remove('selected'));
+                document.getElementById('selectedSequence').textContent = 'Твоя последовательность:';
             }
         }
 
-        function checkAnswer(num, answer) {
-            const correctAnswers = {
-                2: 'Переименовать',
-                3: 'Да',
-                4: 'Летним сандалиям'
-            };
-
-            if (answer === correctAnswers[num]) {
+        function checkAnswer(num, ans) {
+            const correct = {2: 'Переименовать', 3: 'Да', 4: 'Летним сандалиям'};
+            if (ans === correct[num]) {
                 showDigit(correctCode[num - 1]);
-                setTimeout(() => nextPuzzle(num + 1), 1500);
-            } else {
-                alert('Неверно! Попробуй снова.');
-            }
-        }
-
-        function nextPuzzle(n) {
-            document.querySelectorAll('.puzzle-screen').forEach(s => s.style.display = 'none');
-            if (n === 5) {
-                showCodeInput();
-            } else {
-                document.getElementById(`puzzle${n}Screen`).style.display = 'flex';
-            }
-        }
-
-        function showCodeInput() {
-            document.querySelectorAll('.puzzle-screen').forEach(screen => {
-                screen.style.display = 'none';
-            });
-            document.getElementById('codeInputScreen').style.display = 'flex';
-            // 🔽 Верхнюю плашку мы убрали, ничего не нужно скрывать
+                setTimeout(() => {
+                    if (num < 4) showScreen(`puzzle${num + 1}Screen`);
+                    else showScreen('codeInputScreen');
+                }, 1500);
+            } else alert('Неверно!');
         }
 
         function inputNumber(n) {
@@ -546,33 +441,24 @@
 
         function clearCode() {
             userInput = [];
-            for (let i = 1; i <= 4; i++) {
-                document.getElementById(`inputDigit${i}`).textContent = '?';
-            }
+            for (let i = 1; i <= 4; i++) document.getElementById(`inputDigit${i}`).textContent = '?';
         }
 
         function checkFinalCode() {
-            if (JSON.stringify(userInput) === JSON.stringify(correctCode)) {
-                openChest();
-            } else {
-                alert('Неверный код!');
-            }
+            if (JSON.stringify(userInput) === JSON.stringify(correctCode)) openChest();
+            else alert('Неправильный код!');
         }
 
         function openChest() {
-            const chest = document.getElementById('chest');
-            chest.classList.add('open');
-            setTimeout(() => {
-                document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
-                document.getElementById('victoryScreen').style.display = 'flex';
-            }, 1200);
+            showScreen('victoryScreen');
+            document.getElementById('chest').classList.add('open');
         }
 
         function showDigit(num) {
-            const reveal = document.getElementById('digitReveal');
-            reveal.textContent = num;
-            reveal.style.display = 'block';
-            setTimeout(() => reveal.style.display = 'none', 1000);
+            const d = document.getElementById('digitReveal');
+            d.textContent = num;
+            d.style.display = 'block';
+            setTimeout(() => d.style.display = 'none', 1000);
         }
     </script>
 </body>

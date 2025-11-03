@@ -223,6 +223,33 @@
             transform: scale(1.1);
         }
 
+        /* Стили для ввода кода */
+        .code-input-display {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .code-digit {
+            width: 40px;
+            height: 40px;
+            background: #EAC774;
+            border: 2px solid #8B4513;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #8B4513;
+        }
+
+        .code-digit.filled {
+            background: #8B4513;
+            color: white;
+        }
+
         .digit-reveal {
             position: absolute;
             top: 50%;
@@ -260,6 +287,14 @@
         @keyframes bounce {
             from { transform: translateY(0) scale(1); }
             to { transform: translateY(-20px) scale(1.1); }
+        }
+
+        .memory-hint {
+            color: #8B4513;
+            font-style: italic;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 0.9em;
         }
     </style>
 </head>
@@ -333,6 +368,19 @@
         <!-- Ввод кода -->
         <div class="puzzle-container" id="puzzle5" style="display: none;">
             <div class="puzzle-title">Введи код сундука</div>
+            <div class="puzzle-content">
+                Вспомни цифры, которые ты получил из загадок, и введи код из 4 цифр:
+            </div>
+            <div class="memory-hint">Цифры больше не видны - нужно вспомнить!</div>
+            
+            <!-- Отображение вводимого кода (только звёздочки/точки) -->
+            <div class="code-input-display">
+                <div class="code-digit" id="inputDigit1">•</div>
+                <div class="code-digit" id="inputDigit2">•</div>
+                <div class="code-digit" id="inputDigit3">•</div>
+                <div class="code-digit" id="inputDigit4">•</div>
+            </div>
+            
             <div class="number-pad">
                 <button class="number-btn" onclick="inputNumber(1)">1</button>
                 <button class="number-btn" onclick="inputNumber(2)">2</button>
@@ -364,6 +412,7 @@
         const correctCode = [7, 2, 5, 9];
         let userInput = [];
         let completedPuzzles = new Set([1]); // Загадка 1 доступна сразу
+        let revealedDigits = [false, false, false, false]; // Отслеживаем какие цифры были показаны
 
         function showPuzzle(num) {
             // Скрываем все загадки
@@ -430,22 +479,28 @@
         function inputNumber(n) {
             if (userInput.length < 4) {
                 userInput.push(n);
-                document.getElementById(`digit${userInput.length}`).textContent = n;
+                // Показываем заполненное состояние, но не цифру
+                document.getElementById(`inputDigit${userInput.length}`).classList.add('filled');
             }
         }
 
         function clearCode() {
             userInput = [];
             for (let i = 1; i <= 4; i++) {
-                document.getElementById(`digit${i}`).textContent = '?';
+                document.getElementById(`inputDigit${i}`).classList.remove('filled');
             }
         }
 
         function checkFinalCode() {
+            if (userInput.length !== 4) {
+                alert('Введи все 4 цифры!');
+                return;
+            }
+            
             if (JSON.stringify(userInput) === JSON.stringify(correctCode)) {
                 openChest();
             } else {
-                alert('Неправильный код!');
+                alert('Неправильный код! Попробуй ещё раз.');
                 clearCode();
             }
         }
@@ -461,8 +516,8 @@
             d.textContent = num;
             d.style.display = 'block';
             
-            // Обновляем цифру в замке
-            document.getElementById(`digit${puzzleNum}`).textContent = num;
+            // Сохраняем цифру, но НЕ показываем в замке
+            revealedDigits[puzzleNum - 1] = true;
             
             setTimeout(() => d.style.display = 'none', 1000);
         }

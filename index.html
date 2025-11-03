@@ -46,17 +46,41 @@
             filter: drop-shadow(0 0 30px gold);
         }
 
-        .lock {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
+        /* ПЛАШКА ВВОДА КОДА ПОД СУНДУКОМ */
+        .code-input-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            max-width: 300px;
         }
 
-        .lock-digit {
+        .code-input-section.active {
+            display: flex;
+        }
+
+        .code-instruction {
+            color: #8B4513;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .code-input-display {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .code-digit {
             width: 40px;
             height: 40px;
             background: #EAC774;
-            color: #8B4513;
             border: 2px solid #8B4513;
             border-radius: 8px;
             display: flex;
@@ -64,7 +88,54 @@
             align-items: center;
             font-size: 1.2em;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            color: #8B4513;
+        }
+
+        .code-digit.filled {
+            background: #8B4513;
+            color: white;
+        }
+
+        .number-pad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .number-btn {
+            background: #8B4513;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .number-btn:hover {
+            background: #A0522D;
+        }
+
+        .clear-btn, .submit-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1em;
+            margin: 0 5px;
+        }
+
+        .clear-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .submit-btn {
+            background: #27ae60;
+            color: white;
         }
 
         /* Навигация */
@@ -142,48 +213,24 @@
             text-align: center;
         }
 
-        /* Общие стили для кнопок */
-        .sequence-option, .option-button, .number-btn {
-            cursor: pointer;
-            font-family: inherit;
-            border: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
         .sequence-option, .option-button {
             background: #8B4513;
             color: white;
             padding: 12px;
-            font-size: 1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
             margin-bottom: 10px;
             width: 100%;
+            text-align: center;
         }
 
         .sequence-option:hover, .option-button:hover {
             background: #A0522D;
-            transform: scale(1.02);
         }
 
-        .sequence-option.selected {
-            background: #27ae60;
-        }
-
-        .sequence-option.incorrect {
-            background: #e74c3c;
-        }
-
-        .selected-sequence {
-            background: rgba(139, 69, 19, 0.1);
-            padding: 10px;
-            border-radius: 8px;
-            margin: 12px 0;
-            color: #2C2C2C;
-            font-size: 0.9em;
-        }
-
-        .check-button, .submit-btn {
+        .check-button {
             background: #27ae60;
             color: white;
             padding: 12px 24px;
@@ -191,80 +238,6 @@
             border-radius: 8px;
             cursor: pointer;
             font-family: inherit;
-            font-size: 1em;
-            margin: 10px 5px 0 0;
-        }
-
-        .clear-btn {
-            background: #e74c3c;
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 1em;
-            margin: 10px 5px 0 0;
-        }
-
-        .number-pad {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin: 20px 0;
-        }
-
-        .number-btn {
-            background: #8B4513;
-            color: white;
-            padding: 18px;
-            border-radius: 12px;
-            font-size: 1.3em;
-            font-weight: bold;
-        }
-
-        .number-btn:hover {
-            background: #A0522D;
-            transform: scale(1.1);
-        }
-
-        /* Стили для ввода кода - ТОЛЬКО ПОД СУНДУКОМ */
-        .code-input-section {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0;
-            padding: 0 20px;
-        }
-
-        .code-input-section.active {
-            display: flex;
-        }
-
-        .code-input-display {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin: 15px 0;
-        }
-
-        .code-digit {
-            width: 40px;
-            height: 40px;
-            background: #EAC774;
-            border: 2px solid #8B4513;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #8B4513;
-        }
-
-        .code-digit.filled {
-            background: #8B4513;
-            color: white;
         }
 
         .digit-reveal {
@@ -305,32 +278,38 @@
             from { transform: translateY(0) scale(1); }
             to { transform: translateY(-20px) scale(1.1); }
         }
-
-        .memory-hint {
-            color: #8B4513;
-            font-style: italic;
-            margin: 10px 0;
-            text-align: center;
-            font-size: 0.9em;
-        }
-
-        .code-instruction {
-            color: white;
-            text-align: center;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
     </style>
 </head>
 <body>
     <!-- Общий контейнер -->
     <div class="chest-container">
         <div class="chest" id="chest"></div>
-        <div class="lock">
-            <div class="lock-digit" id="digit1">?</div>
-            <div class="lock-digit" id="digit2">?</div>
-            <div class="lock-digit" id="digit3">?</div>
-            <div class="lock-digit" id="digit4">?</div>
+        
+        <!-- ПЛАШКА ВВОДА КОДА - ТОЛЬКО ЗДЕСЬ -->
+        <div class="code-input-section" id="codeInputSection">
+            <div class="code-instruction">Введи код из 4 цифр (вспомни из загадок):</div>
+            <div class="code-input-display">
+                <div class="code-digit" id="inputDigit1">•</div>
+                <div class="code-digit" id="inputDigit2">•</div>
+                <div class="code-digit" id="inputDigit3">•</div>
+                <div class="code-digit" id="inputDigit4">•</div>
+            </div>
+            <div class="number-pad">
+                <button class="number-btn" onclick="inputNumber(1)">1</button>
+                <button class="number-btn" onclick="inputNumber(2)">2</button>
+                <button class="number-btn" onclick="inputNumber(3)">3</button>
+                <button class="number-btn" onclick="inputNumber(4)">4</button>
+                <button class="number-btn" onclick="inputNumber(5)">5</button>
+                <button class="number-btn" onclick="inputNumber(6)">6</button>
+                <button class="number-btn" onclick="inputNumber(7)">7</button>
+                <button class="number-btn" onclick="inputNumber(8)">8</button>
+                <button class="number-btn" onclick="inputNumber(9)">9</button>
+                <button class="number-btn" onclick="inputNumber(0)">0</button>
+            </div>
+            <div>
+                <button class="clear-btn" onclick="clearCode()">Очистить</button>
+                <button class="submit-btn" onclick="checkFinalCode()">Открыть</button>
+            </div>
         </div>
     </div>
 
@@ -341,33 +320,6 @@
         <div class="puzzle-tab" onclick="showPuzzle(3)">3</div>
         <div class="puzzle-tab" onclick="showPuzzle(4)">4</div>
         <div class="puzzle-tab" onclick="showPuzzle(5)">🔒</div>
-    </div>
-
-    <!-- Секция ввода кода - ТОЛЬКО ЗДЕСЬ -->
-    <div class="code-input-section" id="codeInputSection">
-        <div class="code-instruction">Введи код из 4 цифр (вспомни из загадок):</div>
-        <div class="code-input-display">
-            <div class="code-digit" id="inputDigit1">•</div>
-            <div class="code-digit" id="inputDigit2">•</div>
-            <div class="code-digit" id="inputDigit3">•</div>
-            <div class="code-digit" id="inputDigit4">•</div>
-        </div>
-        <div class="number-pad">
-            <button class="number-btn" onclick="inputNumber(1)">1</button>
-            <button class="number-btn" onclick="inputNumber(2)">2</button>
-            <button class="number-btn" onclick="inputNumber(3)">3</button>
-            <button class="number-btn" onclick="inputNumber(4)">4</button>
-            <button class="number-btn" onclick="inputNumber(5)">5</button>
-            <button class="number-btn" onclick="inputNumber(6)">6</button>
-            <button class="number-btn" onclick="inputNumber(7)">7</button>
-            <button class="number-btn" onclick="inputNumber(8)">8</button>
-            <button class="number-btn" onclick="inputNumber(9)">9</button>
-            <button class="number-btn" onclick="inputNumber(0)">0</button>
-        </div>
-        <div>
-            <button class="clear-btn" onclick="clearCode()">Очистить</button>
-            <button class="submit-btn" onclick="checkFinalCode()">Открыть</button>
-        </div>
     </div>
 
     <!-- Контент загадок -->
@@ -430,23 +382,23 @@
         const correctSequence = ["Почувствовал холод", "Посмотрел на термометр", "Надел куртку", "Вышел на улицу"];
         const correctCode = [7, 2, 5, 9];
         let userInput = [];
-        let completedPuzzles = new Set([1]); // Загадка 1 доступна сразу
-        let revealedDigits = [false, false, false, false]; // Отслеживаем какие цифры были показаны
+        let completedPuzzles = new Set([1]);
 
         function showPuzzle(num) {
             // Скрываем все загадки
             document.querySelectorAll('.puzzle-container').forEach(p => p.style.display = 'none');
             document.getElementById('victoryMessage').style.display = 'none';
             
-            // Управляем отображением секции ввода кода
+            // Управляем отображением плашки ввода кода
             const codeSection = document.getElementById('codeInputSection');
             if (num === 5) {
                 codeSection.classList.add('active');
             } else {
                 codeSection.classList.remove('active');
+                clearCode(); // Очищаем код при переходе на другую загадку
             }
             
-            // Показываем выбранную загадку, если она доступна
+            // Показываем выбранную загадку
             if (completedPuzzles.has(num) || num === 1) {
                 if (num !== 5) {
                     document.getElementById(`puzzle${num}`).style.display = 'block';
@@ -462,7 +414,6 @@
             completedPuzzles.add(num + 1);
             document.querySelectorAll('.puzzle-tab')[num - 1].classList.add('completed');
             
-            // Автоматически переходим к следующей загадке
             if (num < 5) {
                 showPuzzle(num + 1);
             }
@@ -484,7 +435,7 @@
                 return;
             }
             if (JSON.stringify(sequence) === JSON.stringify(correctSequence)) {
-                showDigit(7, 1);
+                showDigit(7);
                 completePuzzle(1);
             } else {
                 alert('Неправильно!');
@@ -498,7 +449,7 @@
             const correct = {2: 'Переименовать', 3: 'Да', 4: 'Летним сандалиям'};
             if (ans === correct[num]) {
                 const digit = correctCode[num - 1];
-                showDigit(digit, num);
+                showDigit(digit);
                 completePuzzle(num);
             } else {
                 alert('Неверно!');
@@ -508,8 +459,8 @@
         function inputNumber(n) {
             if (userInput.length < 4) {
                 userInput.push(n);
-                // Показываем заполненное состояние, но не цифру
                 document.getElementById(`inputDigit${userInput.length}`).classList.add('filled');
+                document.getElementById(`inputDigit${userInput.length}`).textContent = n;
             }
         }
 
@@ -517,6 +468,7 @@
             userInput = [];
             for (let i = 1; i <= 4; i++) {
                 document.getElementById(`inputDigit${i}`).classList.remove('filled');
+                document.getElementById(`inputDigit${i}`).textContent = '•';
             }
         }
 
@@ -541,14 +493,10 @@
             document.getElementById('codeInputSection').classList.remove('active');
         }
 
-        function showDigit(num, puzzleNum) {
+        function showDigit(num) {
             const d = document.getElementById('digitReveal');
             d.textContent = num;
             d.style.display = 'block';
-            
-            // Сохраняем цифру, но НЕ показываем в замке
-            revealedDigits[puzzleNum - 1] = true;
-            
             setTimeout(() => d.style.display = 'none', 1000);
         }
 

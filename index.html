@@ -31,7 +31,7 @@
         /* Заголовок игры */
         .game-title {
             text-align: center;
-            margin: -30px 0 05px 0;
+            margin: -30px 0 5px 0;
             padding: 0 20px;
             flex-shrink: 0;
         }
@@ -46,17 +46,17 @@
         }
 
         .game-title p {
-    color: white;
-    font-size: 1.1em;
-    font-family: 'Underdog', cursive;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-    opacity: 0.95;
-    margin-top: 30px; /* Больше отступ сверху */
-    line-height: 1.4;
-    max-width: 280px; /* Уже для переноса */
-    margin-left: auto;
-    margin-right: auto;
-}
+            color: white;
+            font-size: 1.1em;
+            font-family: 'Underdog', cursive;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+            opacity: 0.95;
+            margin-top: 30px;
+            line-height: 1.4;
+            max-width: 280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
         /* Сундук */
         .chest-container {
@@ -83,17 +83,19 @@
             filter: drop-shadow(0 0 20px gold);
         }
 
-        /* Плашка ввода кода */
+        /* Плашка ввода кода с вертикальным фоном */
         .code-input-section {
             display: none;
             flex-direction: column;
             align-items: center;
             margin: 5px 0;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 15px 15px;
+            background: url('puzzle_bg_vertical.png') center/contain no-repeat;
             border-radius: 12px;
             box-shadow: 0 3px 15px rgba(0,0,0,0.2);
             max-width: 260px;
+            position: relative;
+            min-height: 400px;
         }
 
         .code-input-section.active {
@@ -103,17 +105,21 @@
         .code-instruction {
             color: #8B4513;
             text-align: center;
-            margin-bottom: 8px;
+            margin-bottom: 15px;
             font-weight: bold;
-            font-size: 0.85em;
+            font-size: 0.9em;
             font-family: 'Underdog', cursive;
+            max-width: 220px;
+            line-height: 1.3;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .code-input-display {
             display: flex;
             gap: 6px;
             justify-content: center;
-            margin: 6px 0;
+            margin: 10px 0;
         }
 
         .code-digit {
@@ -139,7 +145,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 5px;
-            margin: 8px 0;
+            margin: 15px 0;
         }
 
         .number-btn {
@@ -217,27 +223,27 @@
             background: rgba(139, 69, 19, 0.6);
         }
 
-        /* Контейнер загадок с ВЕРТИКАЛЬНОЙ плашкой */
+        /* Контейнер загадок */
         .game-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    overflow-y: auto;
-    margin-top: -40px; /* ПРАКТИЧЕСКИ ВПЛОТНУЮ */
-}
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            overflow-y: auto;
+            margin-top: -40px;
+        }
 
-.puzzle-container::before {
-    content: '';
-    position: absolute;
-    top: 250px; /* Поднимаем фон выше */
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('puzzle_bg_vertical.png') center/contain no-repeat;
-    z-index: -1; /* Фон позади контента */
-}
+        .puzzle-container {
+            background: url('puzzle_bg_vertical.png') center/contain no-repeat;
+            padding: 50px 25px 45px;
+            width: 95vw;
+            max-width: 600px;
+            margin-top: 0;
+            min-height: 750px;
+            position: relative;
+        }
+
         .puzzle-title {
             color: #2C2C2C;
             font-size: 1.3em;

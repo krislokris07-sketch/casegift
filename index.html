@@ -252,7 +252,7 @@
             margin-top: -40px; /* ПРАКТИЧЕСКИ ВПЛОТНУЮ */
         }
 
-        .game-content::before {
+        .game-content.with-bg::before {
             content: '';
             position: absolute;
             top: 250px; /* Поднимаем фон выше */
@@ -547,7 +547,7 @@
     </div>
 
     <!-- Контент загадок -->
-    <div class="game-content">
+    <div class="game-content" id="gameContent">
         <!-- Загадка 1 -->
         <div class="puzzle-container" id="puzzle1">
             <div class="puzzle-title">Загадка 1: Последовательность</div>
@@ -627,6 +627,10 @@
             const codeSection = document.getElementById('codeInputSection');
             const gameTitle = document.getElementById('gameTitle');
             const puzzlesNav = document.getElementById('puzzlesNav');
+            const gameContent = document.getElementById('gameContent');
+            
+            // Добавляем фон для всех страниц кроме победы
+            gameContent.classList.add('with-bg');
             
             if (num === 5) {
                 codeSection.classList.add('active');
@@ -727,6 +731,8 @@
             document.querySelectorAll('.puzzle-container').forEach(p => p.style.display = 'none');
             document.getElementById('victoryMessage').style.display = 'block';
             document.getElementById('codeInputSection').classList.remove('active');
+            // Убираем фон на странице победы
+            document.getElementById('gameContent').classList.remove('with-bg');
         }
 
         function showDigit(num) {

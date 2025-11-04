@@ -214,14 +214,16 @@
 
         /* Контейнер загадок с ВЕРТИКАЛЬНОЙ плашкой */
         .game-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0 15px 10px;
-            overflow-y: auto;
-            margin-top: -5px;
-        }
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 5px 10px; /* Уменьшил боковые отступы */
+    overflow-y: auto;
+    margin-top: -5px;
+    width: 100%; /* На всю ширину */
+    max-width: 100%; /* Снять ограничение */
+}
 
       .puzzle-container {
     background: url('puzzle_bg_vertical.png') center/contain no-repeat;

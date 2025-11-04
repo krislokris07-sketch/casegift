@@ -88,7 +88,7 @@
             filter: drop-shadow(0 0 20px gold);
         }
 
-        /* Плашка ввода кода с вашим изображением */
+        /* Плашка ввода кода */
         .code-input-section {
             display: none;
             flex-direction: column;
@@ -241,7 +241,7 @@
             background: rgba(139, 69, 19, 0.6);
         }
 
-        /* Контейнер загадок */
+        /* Контейнер загадок с ВЕРТИКАЛЬНОЙ плашкой */
         .game-content {
             flex: 1;
             display: flex;
@@ -249,8 +249,18 @@
             align-items: center;
             padding: 0;
             overflow-y: auto;
-            margin-top: -40px;
-            position: relative;
+            margin-top: -40px; /* ПРАКТИЧЕСКИ ВПЛОТНУЮ */
+        }
+
+        .game-content::before {
+            content: '';
+            position: absolute;
+            top: 250px; /* Поднимаем фон выше */
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('puzzle_bg_vertical.png') center/contain no-repeat;
+            z-index: -1; /* Фон позади контента */
         }
 
         .puzzle-container {
@@ -260,29 +270,6 @@
             padding: 50px 25px 40px;
             margin: 10px 0;
             border-radius: 15px;
-        }
-
-        .puzzle-container::before {
-            content: '';
-            position: absolute;
-            top: 250px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('puzzle_bg_vertical.png') center/contain no-repeat;
-            z-index: -1;
-        }
-
-        /* Фон для страницы ввода пароля */
-        .password-page-bg::before {
-            content: '';
-            position: absolute;
-            top: 250px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('puzzle_bg_vertical.png') center/contain no-repeat;
-            z-index: -1;
         }
 
         .puzzle-title {
@@ -516,7 +503,7 @@
     <div class="chest-container">
         <div class="chest" id="chest"></div>
         
-        <!-- Плашка ввода кода с вашим изображением -->
+        <!-- Плашка ввода кода -->
         <div class="code-input-section" id="codeInputSection">
             <div class="code-instruction">Введи код из 4 цифр (вспомни из загадок):</div>
             <div class="code-input-display">
@@ -560,7 +547,7 @@
     </div>
 
     <!-- Контент загадок -->
-    <div class="game-content" id="gameContent">
+    <div class="game-content">
         <!-- Загадка 1 -->
         <div class="puzzle-container" id="puzzle1">
             <div class="puzzle-title">Загадка 1: Последовательность</div>
@@ -640,18 +627,15 @@
             const codeSection = document.getElementById('codeInputSection');
             const gameTitle = document.getElementById('gameTitle');
             const puzzlesNav = document.getElementById('puzzlesNav');
-            const gameContent = document.getElementById('gameContent');
             
             if (num === 5) {
                 codeSection.classList.add('active');
                 gameTitle.classList.add('hidden');
                 puzzlesNav.classList.add('hidden');
-                gameContent.classList.add('password-page-bg');
             } else {
                 codeSection.classList.remove('active');
                 gameTitle.classList.remove('hidden');
                 puzzlesNav.classList.remove('hidden');
-                gameContent.classList.remove('password-page-bg');
                 clearCode();
             }
             
@@ -743,7 +727,6 @@
             document.querySelectorAll('.puzzle-container').forEach(p => p.style.display = 'none');
             document.getElementById('victoryMessage').style.display = 'block';
             document.getElementById('codeInputSection').classList.remove('active');
-            document.getElementById('gameContent').classList.remove('password-page-bg');
         }
 
         function showDigit(num) {

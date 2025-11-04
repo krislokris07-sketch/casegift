@@ -223,13 +223,15 @@
     margin-top: -40px; /* ПРАКТИЧЕСКИ ВПЛОТНУЮ */
 }
 
-.puzzle-container {
+.puzzle-container::before {
+    content: '';
+    position: absolute;
+    top: -30px; /* Поднимаем фон выше */
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: url('puzzle_bg_vertical.png') center/contain no-repeat;
-    padding: 170px 60px 80px; /* ОГРОМНЫЙ верхний отступ */
-    width: 95vw;
-    max-width: 600px;
-    margin-top: 0;
-    min-height: 750px;
+    z-index: -1; /* Фон позади контента */
 }
         .puzzle-title {
             color: #2C2C2C;

@@ -34,6 +34,11 @@
             margin: -30px 0 05px 0;
             padding: 0 20px;
             flex-shrink: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .game-title.hidden {
+            display: none;
         }
 
         .game-title h1 {
@@ -46,17 +51,17 @@
         }
 
         .game-title p {
-    color: white;
-    font-size: 1.1em;
-    font-family: 'Underdog', cursive;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-    opacity: 0.95;
-    margin-top: 30px; /* Больше отступ сверху */
-    line-height: 1.4;
-    max-width: 280px; /* Уже для переноса */
-    margin-left: auto;
-    margin-right: auto;
-}
+            color: white;
+            font-size: 1.1em;
+            font-family: 'Underdog', cursive;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+            opacity: 0.95;
+            margin-top: 30px;
+            line-height: 1.4;
+            max-width: 280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
         /* Сундук */
         .chest-container {
@@ -199,6 +204,11 @@
             margin: 5px 0;
             padding: 0 20px;
             flex-shrink: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .puzzles-nav.hidden {
+            display: none;
         }
 
         .puzzle-tab {
@@ -231,27 +241,50 @@
             background: rgba(139, 69, 19, 0.6);
         }
 
-        /* Контейнер загадок с ВЕРТИКАЛЬНОЙ плашкой */
+        /* Контейнер загадок */
         .game-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    overflow-y: auto;
-    margin-top: -40px; /* ПРАКТИЧЕСКИ ВПЛОТНУЮ */
-}
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            overflow-y: auto;
+            margin-top: -40px;
+            position: relative;
+        }
 
-.puzzle-container::before {
-    content: '';
-    position: absolute;
-    top: 250px; /* Поднимаем фон выше */
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('puzzle_bg_vertical.png') center/contain no-repeat;
-    z-index: -1; /* Фон позади контента */
-}
+        .puzzle-container {
+            position: relative;
+            max-width: 380px;
+            width: 90%;
+            padding: 50px 25px 40px;
+            margin: 10px 0;
+            border-radius: 15px;
+        }
+
+        .puzzle-container::before {
+            content: '';
+            position: absolute;
+            top: 250px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('puzzle_bg_vertical.png') center/contain no-repeat;
+            z-index: -1;
+        }
+
+        /* Фон для страницы ввода пароля */
+        .password-page-bg::before {
+            content: '';
+            position: absolute;
+            top: 250px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('puzzle_bg_vertical.png') center/contain no-repeat;
+            z-index: -1;
+        }
+
         .puzzle-title {
             color: #2C2C2C;
             font-size: 1.3em;
@@ -512,13 +545,13 @@
     </div>
 
     <!-- Заголовок игры -->
-    <div class="game-title">
+    <div class="game-title" id="gameTitle">
         <h1>Сундук с загадками</h1>
         <p>Разгадай все загадки, чтобы открыть сундук!</p>
     </div>
 
     <!-- Навигация -->
-    <div class="puzzles-nav">
+    <div class="puzzles-nav" id="puzzlesNav">
         <div class="puzzle-tab active" onclick="showPuzzle(1)">1</div>
         <div class="puzzle-tab" onclick="showPuzzle(2)">2</div>
         <div class="puzzle-tab" onclick="showPuzzle(3)">3</div>
@@ -527,7 +560,7 @@
     </div>
 
     <!-- Контент загадок -->
-    <div class="game-content">
+    <div class="game-content" id="gameContent">
         <!-- Загадка 1 -->
         <div class="puzzle-container" id="puzzle1">
             <div class="puzzle-title">Загадка 1: Последовательность</div>
@@ -605,10 +638,20 @@
             document.getElementById('victoryMessage').style.display = 'none';
             
             const codeSection = document.getElementById('codeInputSection');
+            const gameTitle = document.getElementById('gameTitle');
+            const puzzlesNav = document.getElementById('puzzlesNav');
+            const gameContent = document.getElementById('gameContent');
+            
             if (num === 5) {
                 codeSection.classList.add('active');
+                gameTitle.classList.add('hidden');
+                puzzlesNav.classList.add('hidden');
+                gameContent.classList.add('password-page-bg');
             } else {
                 codeSection.classList.remove('active');
+                gameTitle.classList.remove('hidden');
+                puzzlesNav.classList.remove('hidden');
+                gameContent.classList.remove('password-page-bg');
                 clearCode();
             }
             
@@ -700,6 +743,7 @@
             document.querySelectorAll('.puzzle-container').forEach(p => p.style.display = 'none');
             document.getElementById('victoryMessage').style.display = 'block';
             document.getElementById('codeInputSection').classList.remove('active');
+            document.getElementById('gameContent').classList.remove('password-page-bg');
         }
 
         function showDigit(num) {

@@ -440,7 +440,7 @@
         <div class="puzzle-container" id="puzzle2" style="display: none;">
             <div class="puzzle-title">Загадка 2: Коробок</div>
             <div class="puzzle-content">
-                Как поместить всё в спичечный коробок?<br>Ответ: нужно ______ коробок.
+                Как поместить кеды, шарф и куртку в спичечный коробок?<br>Ответ: нужно ______ коробок.
             </div>
             <button class="option-button" onclick="checkAnswer(2, 'Увеличить')">Увеличить</button>
             <button class="option-button" onclick="checkAnswer(2, 'Переименовать')">Переименовать</button>
@@ -450,7 +450,7 @@
         <!-- Загадка 3 -->
         <div class="puzzle-container" id="puzzle3" style="display: none;">
             <div class="puzzle-title">Загадка 3: Комната</div>
-            <div class="puzzle-content">Ты видишь раскрытый зонт и сухие ботинки. Был ли дождь?</div>
+            <div class="puzzle-content">Ты видишь раскрытый зонт, мокрый плащ и сухие ботинки. Был ли дождь?</div>
             <button class="option-button" onclick="checkAnswer(3, 'Да')">Да</button>
             <button class="option-button" onclick="checkAnswer(3, 'Нет')">Нет</button>
             <button class="option-button" onclick="checkAnswer(3, 'Неизвестно')">Неизвестно</button>
@@ -460,12 +460,12 @@
         <div class="puzzle-container" id="puzzle4" style="display: none;">
             <div class="puzzle-title">Загадка 4: Аналогия</div>
             <div class="puzzle-content">
-                Если «тёплый свитер» противоположен «лёгкой футболке»,<br>
-                то «зимние сапоги» противоположны...
+                сли «молодильное яблоко» противоположно «отравленному меду»,<br>
+                то «аленький цветочек» противоположен...?
             </div>
-            <button class="option-button" onclick="checkAnswer(4, 'Летним сандалиям')">Летним сандалиям</button>
-            <button class="option-button" onclick="checkAnswer(4, 'Осенним ботинкам')">Осенним ботинкам</button>
-            <button class="option-button" onclick="checkAnswer(4, 'Домашним тапочкам')">Домашним тапочкам</button>
+            <button class="option-button" onclick="checkAnswer(4, 'Драконьему зубу')">Драконьему зубу</button>
+            <button class="option-button" onclick="checkAnswer(4, 'Болотной кувшинке')">Болотной кувшинке</button>
+            <button class="option-button" onclick="checkAnswer(4, 'Деду морозу')">Деду морозу</button>
         </div>
 
         <!-- Победа -->
@@ -485,7 +485,7 @@
                 <img src="gift5.png" class="falling-image" style="left: 75%; animation-delay: 3s; animation-duration: 2.8s;">
                 <img src="gift6.png" class="falling-image" style="left: 90%; animation-delay: 3.3s; animation-duration: 3s;">
             </div>
-            <div class="victory-message">Ты открыл сундук! Твои сокровища ждут тебя 🎁</div>
+            <div class="victory-message">Ты открыл сундук! Твои сокровища ждут тебя в самом нижнем ящике комода!</div>
         </div>
     </div>
 
@@ -553,7 +553,7 @@
         }
 
         function checkAnswer(num, ans) {
-            const correct = {2: 'Переименовать', 3: 'Да', 4: 'Летним сандалиям'};
+            const correct = {2: 'Переименовать', 3: 'Да', 4: 'Драконьему зубу'};
             if (ans === correct[num]) {
                 const digit = correctCode[num - 1];
                 showDigit(digit);

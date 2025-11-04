@@ -279,7 +279,7 @@
             100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
         }
 
-        /* Анимированные падающие PNG */
+        /* Анимированные падающие PNG - уменьшенные и вразнобой */
         .falling-images {
             position: fixed;
             top: 0;
@@ -292,15 +292,26 @@
 
         .falling-image {
             position: absolute;
-            width: 100px;
-            height: 100px;
-            animation: smoothFall 4s linear infinite;
+            width: 40px; /* Уменьшил размер */
+            height: 40px;
+            animation-duration: 3s; /* Разная скорость */
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
             opacity: 0;
         }
 
-        @keyframes smoothFall {
+        /* Разные анимации для разнообразия */
+        .falling-image:nth-child(odd) {
+            animation-name: fallSpin;
+        }
+
+        .falling-image:nth-child(even) {
+            animation-name: fallBounce;
+        }
+
+        @keyframes fallSpin {
             0% {
-                transform: translateY(-100px) rotate(0deg) scale(0.8);
+                transform: translateY(-100px) rotate(0deg) scale(0.7);
                 opacity: 0;
             }
             10% {
@@ -310,7 +321,38 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(100vh) rotate(360deg) scale(1.2);
+                transform: translateY(100vh) rotate(720deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fallBounce {
+            0% {
+                transform: translateY(-100px) translateX(0px) scale(0.6);
+                opacity: 0;
+            }
+            15% {
+                transform: translateY(100px) translateX(20px) scale(0.8);
+                opacity: 1;
+            }
+            30% {
+                transform: translateY(200px) translateX(-15px) scale(0.9);
+            }
+            45% {
+                transform: translateY(300px) translateX(10px) scale(1);
+            }
+            60% {
+                transform: translateY(400px) translateX(-20px) scale(0.9);
+            }
+            75% {
+                transform: translateY(500px) translateX(15px) scale(0.8);
+            }
+            90% {
+                transform: translateY(600px) translateX(-10px) scale(0.7);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(700px) translateX(0px) scale(0.6);
                 opacity: 0;
             }
         }
@@ -429,18 +471,19 @@
         <!-- Победа -->
         <div id="victoryMessage" style="display: none;">
             <div class="falling-images">
-                <img src="gift1.png" class="falling-image" style="left: 10%; animation-delay: 0s;">
-                <img src="gift2.png" class="falling-image" style="left: 25%; animation-delay: 0.8s;">
-                <img src="gift3.png" class="falling-image" style="left: 40%; animation-delay: 1.6s;">
-                <img src="gift4.png" class="falling-image" style="left: 55%; animation-delay: 2.4s;">
-                <img src="gift5.png" class="falling-image" style="left: 70%; animation-delay: 3.2s;">
-                <img src="gift6.png" class="falling-image" style="left: 85%; animation-delay: 4s;">
-                <img src="gift1.png" class="falling-image" style="left: 15%; animation-delay: 0.4s;">
-                <img src="gift2.png" class="falling-image" style="left: 30%; animation-delay: 1.2s;">
-                <img src="gift3.png" class="falling-image" style="left: 45%; animation-delay: 2s;">
-                <img src="gift4.png" class="falling-image" style="left: 60%; animation-delay: 2.8s;">
-                <img src="gift5.png" class="falling-image" style="left: 75%; animation-delay: 3.6s;">
-                <img src="gift6.png" class="falling-image" style="left: 90%; animation-delay: 4.4s;">
+                <!-- Разные задержки и позиции для хаотичного движения -->
+                <img src="gift1.png" class="falling-image" style="left: 5%; animation-delay: 0s; animation-duration: 2.5s;">
+                <img src="gift2.png" class="falling-image" style="left: 20%; animation-delay: 0.3s; animation-duration: 3s;">
+                <img src="gift3.png" class="falling-image" style="left: 35%; animation-delay: 0.6s; animation-duration: 2.8s;">
+                <img src="gift4.png" class="falling-image" style="left: 50%; animation-delay: 0.9s; animation-duration: 3.2s;">
+                <img src="gift5.png" class="falling-image" style="left: 65%; animation-delay: 1.2s; animation-duration: 2.7s;">
+                <img src="gift6.png" class="falling-image" style="left: 80%; animation-delay: 1.5s; animation-duration: 3.1s;">
+                <img src="gift1.png" class="falling-image" style="left: 15%; animation-delay: 1.8s; animation-duration: 2.9s;">
+                <img src="gift2.png" class="falling-image" style="left: 30%; animation-delay: 2.1s; animation-duration: 3.3s;">
+                <img src="gift3.png" class="falling-image" style="left: 45%; animation-delay: 2.4s; animation-duration: 2.6s;">
+                <img src="gift4.png" class="falling-image" style="left: 60%; animation-delay: 2.7s; animation-duration: 3.4s;">
+                <img src="gift5.png" class="falling-image" style="left: 75%; animation-delay: 3s; animation-duration: 2.8s;">
+                <img src="gift6.png" class="falling-image" style="left: 90%; animation-delay: 3.3s; animation-duration: 3s;">
             </div>
             <div class="victory-message">Ты открыл сундук! Твои сокровища ждут тебя 🎁</div>
         </div>
